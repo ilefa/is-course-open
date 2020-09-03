@@ -1,0 +1,31 @@
+{
+  "name": "is-course-open",
+  "version": "1.0.0",
+  "description": "Check if courses are open for UConn",
+  "main": "src/app.ts",
+  "scripts": {
+    "start": "ts-node src/app.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/notm1ke/is-course-open.git"
+  },
+  "author": "Mike M",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/notm1ke/is-course-open/issues"
+  },
+  "homepage": "https://github.com/notm1ke/is-course-open#readme",
+  "dependencies": {
+    "@types/node-schedule": "^1.3.0",
+    "@types/qs": "^6.9.4",
+    "@types/validator": "^13.1.0",
+    "axios": "^0.20.0",
+    "node-schedule": "^1.3.2",
+    "qs": "^6.9.4",
+    "ts-node": "^9.0.0",
+    "twilio": "^3.49.1",
+    "typescript": "^4.0.2",
+    "validator": "^13.1.1"
+  }
+}

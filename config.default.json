@@ -1,0 +1,18 @@
+{
+    "schedule": "0,15,30,45 * * * * *",
+    "sms": {
+        "use": false,
+        "sid": "twilio-sid",
+        "token": "twilio-token",
+        "sender": "twilio-number",
+        "recipient": "your-phone-number"
+    },
+    "courses": [
+        {
+            "term": "1208",
+            "className": "",
+            "classNumber": "",
+            "classSection": ""
+        }
+    ]
+}
