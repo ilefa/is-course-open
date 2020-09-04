@@ -15,5 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import moment from 'moment';
+
 export const millisDiff = (start: number, end: number) => parseFloat((end - start).toString()).toFixed(1);
 export const numberEnding = (num: number) => num == 1 ? "" : "s";
+export const timestamp = () => moment(Date.now()).format('MMMM Do YYYY, h:mm:ss a');

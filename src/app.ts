@@ -30,7 +30,7 @@ if (!fs.existsSync('config.json')) {
 import config from '../config.json';
 
 import { Course, EnrollmentMetrics } from './lib/course';
-import { millisDiff, numberEnding } from './lib/util';
+import { millisDiff, numberEnding, timestamp } from './lib/util';
 import { Twilio } from 'twilio';
 
 const cronRegex = /(@(annually|yearly|monthly|weekly|daily|hourly|reboot))|(@every (\d+(ns|us|µs|ms|s|m|h))+)|((((\d+,)+\d+|(\d+(\/|-)\d+)|\d+|\*) ?){5,7})/;
@@ -92,10 +92,10 @@ const run = async (course: Course) => {
         let offered = parseInt(seats[1]);
 
         if (available >= offered) {
-            return console.log(`${course._name} ${available > offered ? 'is overfilled.' : 'is full.'} (${millisDiff(start, Date.now())}ms)`);
+            return console.log(`[${timestamp()}] ${course._name} ${available > offered ? 'is overfilled.' : 'is full.'} (${millisDiff(start, Date.now())}ms)`);
         }
 
-        console.log(`${course._name} has ${available} seats available. (${millisDiff(start, Date.now())}ms)`)
+        console.log(`[${timestamp()}] ${course._name} has ${available} seats available. (${millisDiff(start, Date.now())}ms)`)
 
         let metrics: EnrollmentMetrics = new EnrollmentMetrics(
             course, available, offered,
@@ -106,7 +106,7 @@ const run = async (course: Course) => {
         await notify(metrics);
     })
     .catch(err => {
-        console.error(`Error polling enrollment data for ${course._name}:`);
+        console.error(`[${timestamp()}] Error polling enrollment data for ${course._name}:`);
         console.trace(err);
     });
 }
@@ -127,7 +127,7 @@ const notify = async (metrics: EnrollmentMetrics) => {
         to: config.sms.recipient,
         body: `Hey you! ${metrics._course._name} has opened up. (${metrics._available}/${metrics._total} seats)`,
     }).catch(err => {
-        console.error(`Error dispatching SMS notification`);
+        console.error(`[${timestamp()}] Error dispatching SMS notification`);
         console.trace(err);
     })
 }
